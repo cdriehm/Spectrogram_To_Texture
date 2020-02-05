@@ -11,7 +11,7 @@ public class spectrogram : MonoBehaviour
     public Texture2D texture;
     Renderer m_Renderer;
 
-    public float amplitudeScale = 1f, spectrumRefreshRate = .1f;
+    public float spectrumRefreshRate = .1f, amplitudeScale = 150;
     private float spectrumRefreshTime = 0;
 
     void Start()
@@ -43,7 +43,8 @@ public class spectrogram : MonoBehaviour
             {
                 for (int x = 0; x < texture.width; x++)
                 {
-                    float amplitude = spectrum[x] * amplitudeScale;
+                    float amplitude = 1 - (spectrum[x] * amplitudeScale);
+                    print(amplitude);
                     Color col = new Color(amplitude, amplitude, amplitude, amplitude);
                     texture.SetPixel(x, 0, col);
                 }
